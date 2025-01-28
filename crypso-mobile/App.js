@@ -1,15 +1,12 @@
 import React from 'react';
-import { StatusBar } from 'react-native';
-import AppNavigator from './navigation/AppNavigator'; // Path to your AppNavigator
+import { NavigationContainer } from '@react-navigation/native';
+import AppNavigator from './AppNavigator';
 
-const App = () => {
+export default function App() {
   return (
-    <>
-      <StatusBar barStyle="dark-content" /> {/* Set status bar style */}
-      <AppNavigator /> {/* This will render your app's navigation */}
-    </>
+    <NavigationContainer>
+      <AppNavigator />
+    </NavigationContainer>
   );
-};
-
-export default App;
+}
 
