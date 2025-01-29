@@ -1,37 +1,17 @@
-import React, { useState } from 'react';
-import { View, TextInput, Button } from 'react-native';
-import { Text } from 'react-native-paper';
+import React from 'react';
+import { View, Text, Button, StyleSheet } from 'react-native';
 
-const LoginScreen = ({ navigation }) => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-
-  const handleLogin = () => {
-    // Handle login logic here (for now we’ll mock it)
-    if (username && password) {
-      navigation.navigate('Dashboard');
-    } else {
-      alert('Please fill in the fields');
-    }
-  };
-
+export default function LoginScreen({ navigation }) {
   return (
-    <View>
-      <TextInput
-        label="Username"
-        value={username}
-        onChangeText={setUsername}
-      />
-      <TextInput
-        label="Password"
-        secureTextEntry
-        value={password}
-        onChangeText={setPassword}
-      />
-      <Button title="Login" onPress={handleLogin} />
-      <Text>Don't have an account? Sign up</Text>
+    <View style={styles.container}>
+      <Text style={styles.title}>Welcome to Crypso.IO</Text>
+      <Button title="Go to Dashboard" onPress={() => navigation.navigate('Dashboard')} />
     </View>
   );
-};
+}
 
-export default LoginScreen;
+const styles = StyleSheet.create({
+  container: { flex: 1, justifyContent: 'center', alignItems: 'center' },
+  title: { fontSize: 24, fontWeight: 'bold', marginBottom: 20 },
+});
+
