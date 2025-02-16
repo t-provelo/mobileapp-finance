@@ -1,52 +1,71 @@
-// AppNavigator.js
-import React from 'react';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { View, Text, StyleSheet } from 'react-native';
-import HomeScreen from '../screens/HomeScreen';
-import { MaterialIcons } from '@expo/vector-icons';
-
-// Dummy screens
-const CommunitiesScreen = () => <View style={styles.screen}><Text>Communities</Text></View>;
-const TrendingScreen = () => <View style={styles.screen}><Text>Trending</Text></View>;
-const ChartsScreen = () => <View style={styles.screen}><Text>Charts</Text></View>;
+import React from "react";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { NavigationContainer } from "@react-navigation/native";
+import { MaterialIcons } from "@expo/vector-icons";
+import HomeScreen from "../screens/HomeScreen";
+import CommunitiesScreen from "../screens/CommunitiesScreen";
+import TrendingScreen from "../screens/TrendingScreen";
+import ChartsScreen from "../screens/ChartsScreen";
+import ProvAIScreen from "../screens/ProvAIScreen"; // New AI chat screen
 
 const Tab = createBottomTabNavigator();
 
-const AppNavigator = () => {
+export default function AppNavigator() {
   return (
-    <Tab.Navigator
-      screenOptions={{
-        tabBarStyle: { backgroundColor: 'black', borderTopWidth: 1, borderTopColor: 'gray' },
-        tabBarLabelStyle: { color: 'white', fontSize: 12 },
-        headerShown: false,
-      }}
-    >
-      <Tab.Screen 
-        name="Home" 
-        component={HomeScreen} 
-        options={{ tabBarIcon: ({ color }) => <MaterialIcons name="home" size={24} color="white" /> }}
-      />
-      <Tab.Screen 
-        name="Communities" 
-        component={CommunitiesScreen} 
-        options={{ tabBarIcon: ({ color }) => <MaterialIcons name="people" size={24} color="white" /> }}
-      />
-      <Tab.Screen 
-        name="Trending" 
-        component={TrendingScreen} 
-        options={{ tabBarIcon: ({ color }) => <MaterialIcons name="trending-up" size={24} color="white" /> }}
-      />
-      <Tab.Screen 
-        name="Charts" 
-        component={ChartsScreen} 
-        options={{ tabBarIcon: ({ color }) => <MaterialIcons name="bar-chart" size={24} color="white" /> }}
-      />
-    </Tab.Navigator>
+    <NavigationContainer>
+      <Tab.Navigator
+        screenOptions={{
+          tabBarStyle: { backgroundColor: "black", borderTopColor: "#333" },
+          tabBarActiveTintColor: "white",
+          tabBarInactiveTintColor: "#888",
+        }}
+      >
+        <Tab.Screen
+          name="Home"
+          component={HomeScreen}
+          options={{
+            tabBarIcon: ({ color, size }) => (
+              <MaterialIcons name="home" color={color} size={size} />
+            ),
+          }}
+        />
+        <Tab.Screen
+          name="ProvAI"
+          component={ProvAIScreen}
+          options={{
+            tabBarIcon: ({ color, size }) => (
+              <MaterialIcons name="smartphone" color={color} size={size} />
+            ),
+          }}
+        />
+        <Tab.Screen
+          name="Communities"
+          component={CommunitiesScreen}
+          options={{
+            tabBarIcon: ({ color, size }) => (
+              <MaterialIcons name="people" color={color} size={size} />
+            ),
+          }}
+        />
+        <Tab.Screen
+          name="Trending"
+          component={TrendingScreen}
+          options={{
+            tabBarIcon: ({ color, size }) => (
+              <MaterialIcons name="trending-up" color={color} size={size} />
+            ),
+          }}
+        />
+        <Tab.Screen
+          name="Charts"
+          component={ChartsScreen}
+          options={{
+            tabBarIcon: ({ color, size }) => (
+              <MaterialIcons name="bar-chart" color={color} size={size} />
+            ),
+          }}
+        />
+      </Tab.Navigator>
+    </NavigationContainer>
   );
-};
-
-const styles = StyleSheet.create({
-  screen: { flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: 'black' },
-});
-
-export default AppNavigator;
+}
