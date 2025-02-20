@@ -1,11 +1,13 @@
-import 'react-native-polyfill-globals/auto'; // Fix for setImmediate error
+import 'react-native-polyfill-globals/auto'; // Ensures compatibility with setImmediate
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { MaterialIcons } from '@expo/vector-icons';
+
+// Import screens
 import HomeScreen from './screens/HomeScreen';
 import CommunitiesScreen from './screens/CommunitiesScreen';
-import ProvAIScreen from './screens/ProvAIScreen'; // Your AI chat screen
+import ProvAIScreen from './screens/ProvAIScreen'; // Fixed name
 import ChartsScreen from './screens/ChartsScreen';
 import TrendingScreen from './screens/TrendingScreen';
 
@@ -37,7 +39,7 @@ export default function App() {
       >
         <Tab.Screen name="Home" component={HomeScreen} />
         <Tab.Screen name="Communities" component={CommunitiesScreen} />
-        <Tab.Screen name="ProvAI" component={ProvAI} />
+        <Tab.Screen name="ProvAI" component={ProvAIScreen} /> {/* Fixed */}
         <Tab.Screen name="Charts" component={ChartsScreen} />
         <Tab.Screen name="Trending" component={TrendingScreen} />
       </Tab.Navigator>
